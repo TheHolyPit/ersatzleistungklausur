@@ -15,4 +15,4 @@
 
 ## Beschreibung
 
-TBC
+Die Beschreibung ist noch nicht gemacht, da es keine Klassen bisher gibt.
