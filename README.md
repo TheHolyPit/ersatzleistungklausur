@@ -1,5 +1,18 @@
 # Ersatzleistungsprojekt
 
-## Wichtig: Es wird empfohle, IntelliJ Maven hierfür zu verwenden.
+## Wichtig: Es wird empfohlen, IntelliJ Maven hierfür zu verwenden.
 
-## ToDo-Liste
+## Primäre ToDo-Liste
+
+1. [ ] SQL Datenbanken erstellen.
+2. [ ] SQL Datenbanken mit Java verbinden.
+3. [ ] Java Klasse für das Auslesen der SQL Datenbanken erstellen.
+4. [ ] Java Klasse für die Änderung an den Datenbanken erstellen.
+
+## Sekundäre ToDo-Liste
+
+1. [ ] Quality of Life Changes
+
+## Beschreibung
+
+TBC
