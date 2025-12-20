@@ -1,6 +1,7 @@
 # Ersatzleistungsprojekt
 
 ## Wichtig: Es wird empfohlen, IntelliJ Maven hierfür zu verwenden.
+Des Weiteren wird empfohlen, openjdk-25 zu verwenden.
 
 ## Primäre ToDo-Liste
 
