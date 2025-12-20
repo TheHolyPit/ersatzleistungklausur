@@ -4,7 +4,7 @@
 
 ## Primäre ToDo-Liste
 
-1. [ ] SQL Datenbanken erstellen.
+1. [x] SQL Datenbanken erstellen.
 2. [ ] SQL Datenbanken mit Java verbinden.
 3. [ ] Java Klasse für das Auslesen der SQL Datenbanken erstellen.
 4. [ ] Java Klasse für die Änderung an den Datenbanken erstellen.
