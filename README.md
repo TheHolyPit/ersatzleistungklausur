@@ -6,13 +6,13 @@ Des Weiteren wird empfohlen, openjdk-25 zu verwenden.
 ## Primäre ToDo-Liste
 
 1. [x] SQL Datenbanken erstellen.
-2. [ ] SQL Datenbanken mit Java verbinden.
-3. [ ] Java Klasse für das Auslesen der SQL Datenbanken erstellen.
-4. [ ] Java Klasse für die Änderung an den Datenbanken erstellen.
+2. [x] SQL Datenbanken mit Java verbinden.
+3. [x] Java Klasse für das Auslesen der SQL Datenbanken erstellen.
+4. [x] Java Klasse für die Änderung an den Datenbanken erstellen.
 
 ## Sekundäre ToDo-Liste
 
-1. [ ] Quality of Life Changes
+1. [x] Quality of Life Changes (Partiell erledigt)
 
 ## Beschreibung
 
