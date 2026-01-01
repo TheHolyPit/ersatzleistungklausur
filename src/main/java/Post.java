@@ -1,84 +1,105 @@
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.Objects;
 
 /**
- * DAO für Posts.
- * Enthält alle SQL-Operationen für die Post-Tabelle, inkl. Foreign Key-Beziehungen.
+ * POJO-Klasse für die Tabelle "post".
+ * Repräsentiert einen Beitrag/Post in der Datenbank.
+ *
+ * Felder:
+ * - id: Primärschlüssel (AUTO_INCREMENT)
+ * - userId: Foreign Key zur User-Tabelle
+ * - title: Titel des Posts
+ * - content: Inhalt des Posts
+ * - createdAt: Zeitstempel der Erstellung
  */
-public class PostDAO {
+public class Post {
+    private int id;
+    private int userId;
+    private String title;
+    private String content;
+    private Timestamp createdAt;
 
     /**
-     * Fügt einen neuen Post in die Datenbank ein.
-     * @param post Post-Objekt (userId muss existieren)
-     * @throws SQLException
+     * Vollständiger Konstruktor (beim Lesen aus der Datenbank)
      */
-    public void create(Post post) throws SQLException {
-        String sql = "INSERT INTO post (user_id, title, content) VALUES (?, ?, ?)";
-        try (Connection con = DatabaseConnection.connect();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
-            ps.setInt(1, post.getUserId());
-            ps.setString(2, post.getTitle());
-            ps.setString(3, post.getContent());
-            ps.executeUpdate();
-        }
+    public Post(int id, int userId, String title, String content, Timestamp createdAt) {
+        this.id = id;
+        this.userId = userId;
+        this.title = title;
+        this.content = content;
+        this.createdAt = createdAt;
     }
 
     /**
-     * Liest alle Posts aus der Datenbank.
-     * @return Liste aller Posts
-     * @throws SQLException
+     * Konstruktor ohne ID und Timestamp (für neue Posts vor dem Insert)
      */
-    public List<Post> findAll() throws SQLException {
-        List<Post> posts = new ArrayList<>();
-        String sql = "SELECT * FROM post";
-        try (Connection con = DatabaseConnection.connect();
-             Statement st = con.createStatement();
-             ResultSet rs = st.executeQuery(sql)) {
-
-            while (rs.next()) {
-                posts.add(new Post(
-                        rs.getInt("id"),
-                        rs.getInt("user_id"),
-                        rs.getString("title"),
-                        rs.getString("content"),
-                        rs.getTimestamp("created_at")
-                ));
-            }
-        }
-        return posts;
+    public Post(int userId, String title, String content) {
+        this(0, userId, title, content, null);
     }
 
-    /**
-     * Aktualisiert Titel und Inhalt eines Posts.
-     * @param post Post-Objekt mit neuer Info
-     * @throws SQLException
-     */
-    public void update(Post post) throws SQLException {
-        String sql = "UPDATE post SET title=?, content=? WHERE id=?";
-        try (Connection con = DatabaseConnection.connect();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
-            ps.setString(1, post.getTitle());
-            ps.setString(2, post.getContent());
-            ps.setInt(3, post.getId());
-            ps.executeUpdate();
-        }
+    // Getter
+    public int getId() {
+        return id;
     }
 
-    /**
-     * Löscht einen Post anhand der ID.
-     * @param id Post-ID
-     * @throws SQLException
-     */
-    public void delete(int id) throws SQLException {
-        String sql = "DELETE FROM post WHERE id=?";
-        try (Connection con = DatabaseConnection.connect();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+    public int getUserId() {
+        return userId;
+    }
 
-            ps.setInt(1, id);
-            ps.executeUpdate();
-        }
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    // Setter
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return id == post.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
